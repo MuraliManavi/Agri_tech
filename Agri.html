@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech - Agricultural Technology Information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .language-option:hover {
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header with Language Selector -->
+    <header class="bg-green-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-tractor text-2xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold">AgriTech Solutions</h1>
+            </div>
+            
+            <div class="relative group">
+                <button id="languageDropdownBtn" class="flex items-center space-x-2 bg-green-700 hover:bg-green-600 px-4 py-2 rounded-lg transition">
+                    <span id="currentLanguage">English</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                
+                <div id="languageDropdown" class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+                    <div class="py-1">
+                        <a href="#" data-lang="en" class="language-option block px-4 py-2 text-gray-800 hover:bg-green-100 flex items-center">
+                            <span class="w-6 mr-2">🇬🇧</span> English
+                        </a>
+                        <a href="#" data-lang="es" class="language-option block px-4 py-2 text-gray-800 hover:bg-green-100 flex items-center">
+                            <span class="w-6 mr-2">🇪🇸</span> Español
+                        </a>
+                        <a href="#" data-lang="fr" class="language-option block px-4 py-2 text-gray-800 hover:bg-green-100 flex items-center">
+                            <span class="w-6 mr-2">🇫🇷</span> Français
+                        </a>
+                        <a href="#" data-lang="hi" class="language-option block px-4 py-2 text-gray-800 hover:bg-green-100 flex items-center">
+                            <span class="w-6 mr-2">🇮🇳</span> हिन्दी
+                        </a>
+                        <a href="#" data-lang="zh" class="language-option block px-4 py-2 text-gray-800 hover:bg-green-100 flex items-center">
+                            <span class="w-6 mr-2">🇨🇳</span> 中文
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-green-800" id="mainHeading">Agricultural Technologies</h2>
+        
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap justify-center mb-8 border-b border-gray-200">
+            <button class="tab-btn active px-6 py-3 font-medium text-green-800 border-b-2 border-green-600" data-tab="smart-tractors">
+                <i class="fas fa-tractor mr-2"></i>
+                <span class="en">Smart Tractors</span>
+                <span class="es hidden">Tractores Inteligentes</span>
+                <span class="fr hidden">Tracteurs Intelligents</span>
+                <span class="hi hidden">स्मार्ट ट्रैक्टर</span>
+                <span class="zh hidden">智能拖拉机</span>
+            </button>
+            <button class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-green-800" data-tab="drones">
+                <i class="fas fa-drone-alt mr-2"></i>
+                <span class="en">Agricultural Drones</span>
+                <span class="es hidden">Drones Agrícolas</span>
+                <span class="fr hidden">Drones Agricoles</span>
+                <span class="hi hidden">कृषि ड्रोन</span>
+                <span class="zh hidden">农业无人机</span>
+            </button>
+            <button class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-green-800" data-tab="plants">
+                <i class="fas fa-seedling mr-2"></i>
+                <span class="en">Seasonal Plants</span>
+                <span class="es hidden">Plantas Estacionales</span>
+                <span class="fr hidden">Plantes Saisonnières</span>
+                <span class="hi hidden">मौसमी पौधे</span>
+                <span class="zh hidden">季节性植物</span>
+            </button>
+            <button class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-green-800" data-tab="techniques">
+                <i class="fas fa-tools mr-2"></i>
+                <span class="en">Farming Techniques</span>
+                <span class="es hidden">Técnicas Agrícolas</span>
+                <span class="fr hidden">Techniques Agricoles</span>
+                <span class="hi hidden">कृषि तकनीक</span>
+                <span class="zh hidden">农业技术</span>
+            </button>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="content-section active" id="smart-tractors">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 en">Smart Tractors: Revolutionizing Agriculture</h3>
+                <h3 class="text-xl font-bold mb-4 es hidden">Tractores Inteligentes: Revolucionando la Agricultura</h3>
+                <h3 class="text-xl font-bold mb-4 fr hidden">Tracteurs Intelligents: Révolutionner l'Agriculture</h3>
+                <h3 class="text-xl font-bold mb-4 hi hidden">स्मार्ट ट्रैक्टर: कृषि क्रांति</h3>
+                <h3 class="text-xl font-bold mb-4 zh hidden">智能拖拉机：农业革命</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1592595896551-0b5d479c8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Smart Tractor" class="w-full h-auto rounded-lg">
+                        <div class="mt-4">
+                            <source src="https://yourusername.github.io/yourrepo/Farmer%204.webm" type="video/webm">
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 mb-4 en">
+                            Smart tractors are equipped with GPS, sensors, and AI to optimize farming operations. They can autonomously plow fields, plant seeds with precision, and monitor crop health in real-time.
+                        </p>
+                        <p class="text-gray-700 mb-4 es hidden">
+                            Los tractores inteligentes están equipados con GPS, sensores e IA para optimizar las operaciones agrícolas. Pueden arar campos de forma autónoma, plantar semillas con precisión y monitorear la salud de los cultivos en tiempo real.
+                        </p>
+                        <p class="text-gray-700 mb-4 fr hidden">
+                            Les tracteurs intelligents sont équipés de GPS, de capteurs et d'IA pour optimiser les opérations agricoles. Ils peuvent labourer les champs de manière autonome, planter des graines avec précision et surveiller la santé des cultures en temps réel.
+                        </p>
+                        <p class="text-gray-700 mb-4 hi hidden">
+                            स्मार्ट ट्रैक्टर जीपीएस, सेंसर और एआई से लैस होते हैं जो कृषि कार्यों को अनुकूलित करते हैं। वे स्वायत्त रूप से खेतों की जुताई कर सकते हैं, बीजों को सटीकता से बो सकते हैं और फसलों के स्वास्थ्य की वास्तविक समय में निगरानी कर सकते हैं।
+                        </p>
+                        <p class="text-gray-700 mb-4 zh hidden">
+                            智能拖拉机配备GPS、传感器和人工智能，以优化农业操作。它们可以自主犁地、精确播种并实时监测作物健康状况。
+                        </p>
+                        
+                        <div class="mt-6">
+                            <button class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-book mr-2"></i>
+                                <span class="en">Learn More</span>
+                                <span class="es hidden">Aprende Más</span>
+                                <span class="fr hidden">En savoir plus</span>
+                                <span class="hi hidden">अधिक जानें</span>
+                                <span class="zh hidden">了解更多</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section" id="drones">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 en">Agricultural Drones: Precision Farming from Above</h3>
+                <h3 class="text-xl font-bold mb-4 es hidden">Drones Agrícolas: Agricultura de Precisión desde el Aire</h3>
+                <h3 class="text-xl font-bold mb-4 fr hidden">Drones Agricoles: Agriculture de Précision depuis les Airs</h3>
+                <h3 class="text-xl font-bold mb-4 hi hidden">कृषि ड्रोन: ऊपर से सटीक खेती</h3>
+                <h3 class="text-xl font-bold mb-4 zh hidden">农业无人机：来自空中的精准农业</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1579829366248-204fe8413f79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Agricultural Drone" class="w-full h-auto rounded-lg">
+                    </div>
+                    <div>
+                        <p class="text-gray-700 mb-4 en">
+                            Agricultural drones provide farmers with detailed aerial views of their fields, helping to monitor crop health, detect pests, and optimize irrigation. They can also be used for precision spraying of fertilizers and pesticides.
+                        </p>
+                        <p class="text-gray-700 mb-4 es hidden">
+                            Los drones agrícolas proporcionan a los agricultores vistas aéreas detalladas de sus campos, ayudando a monitorear la salud de los cultivos, detectar plagas y optimizar el riego. También se pueden usar para la pulverización precisa de fertilizantes y pesticidas.
+                        </p>
+                        <p class="text-gray-700 mb-4 fr hidden">
+                            Les drones agricoles fournissent aux agriculteurs des vues aériennes détaillées de leurs champs, aidant à surveiller la santé des cultures, à détecter les parasites et à optimiser l'irrigation. Ils peuvent également être utilisés pour la pulvérisation précise d'engrais et de pesticides.
+                        </p>
+                        <p class="text-gray-700 mb-4 hi hidden">
+                            कृषि ड्रोन किसानों को उनके खेतों का विस्तृत हवाई दृश्य प्रदान करते हैं, जिससे फसलों के स्वास्थ्य की निगरानी, कीटों का पता लगाने और सिंचाई को अनुकूलित करने में मदद मिलती है। उनका उपयोग उर्वरकों और कीटनाशकों के सटीक छिड़काव के लिए भी किया जा सकता है।
+                        </p>
+                        <p class="text-gray-700 mb-4 zh hidden">
+                            农业无人机为农民提供田地的详细鸟瞰图，有助于监测作物健康、检测害虫和优化灌溉。它们还可用于精确喷洒肥料和农药。
+                        </p>
+                        
+                        <div class="mt-6">
+                            <button class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-book mr-2"></i>
+                                <span class="en">Learn More</span>
+                                <span class="es hidden">Aprende Más</span>
+                                <span class="fr hidden">En savoir plus</span>
+                                <span class="hi hidden">अधिक जानें</span>
+                                <span class="zh hidden">了解更多</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section" id="plants">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 en">Seasonal Plants: Optimizing Crop Rotation</h3>
+                <h3 class="text-xl font-bold mb-4 es hidden">Plantas Estacionales: Optimizando la Rotación de Cultivos</h3>
+                <h3 class="text-xl font-bold mb-4 fr hidden">Plantes Saisonnières: Optimiser la Rotation des Cultures</h3>
+                <h3 class="text-xl font-bold mb-4 hi hidden">मौसमी पौधे: फसल चक्र अनुकूलन</h3>
+                <h3 class="text-xl font-bold mb-4 zh hidden">季节性植物：优化作物轮作</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Seasonal Plants" class="w-full h-auto rounded-lg">
+                    </div>
+                    <div>
+                        <p class="text-gray-700 mb-4 en">
+                            Understanding seasonal plants and proper crop rotation can significantly improve soil health and yield. Different plants have varying nutrient requirements and growth cycles that can be strategically planned for maximum productivity.
+                        </p>
+                        <p class="text-gray-700 mb-4 es hidden">
+                            Comprender las plantas estacionales y la rotación adecuada de cultivos puede mejorar significativamente la salud del suelo y el rendimiento. Diferentes plantas tienen diferentes requisitos de nutrientes y ciclos de crecimiento que se pueden planificar estratégicamente para una máxima productividad.
+                        </p>
+                        <p class="text-gray-700 mb-4 fr hidden">
+                            Comprendre les plantes saisonnières et la rotation des cultures peut améliorer considérablement la santé des sols et les rendements. Différentes plantes ont des besoins en nutriments et des cycles de croissance variables qui peuvent être planifiés stratégiquement pour une productivité maximale.
+                        </p>
+                        <p class="text-gray-700 mb-4 hi hidden">
+                            मौसमी पौधों और उचित फसल चक्र को समझने से मिट्टी की सेहत और उपज में काफी सुधार हो सकता है। विभिन्न पौधों में अलग-अलग पोषक तत्वों की आवश्यकताएं और विकास चक्र होते हैं जिन्हें अधिकतम उत्पादकता के लिए रणनीतिक रूप से योजनाबद्ध किया जा सकता है।
+                        </p>
+                        <p class="text-gray-700 mb-4 zh hidden">
+                            了解季节性植物和适当的作物轮作可以显著改善土壤健康和产量。不同的植物有不同的营养需求和生长周期，可以战略性地规划以获得最大生产力。
+                        </p>
+                        
+                        <div class="mt-6">
+                            <button class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-book mr-2"></i>
+                                <span class="en">Learn More</span>
+                                <span class="es hidden">Aprende Más</span>
+                                <span class="fr hidden">En savoir plus</span>
+                                <span class="hi hidden">अधिक जानें</span>
+                                <span class="zh hidden">了解更多</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section" id="techniques">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 en">Modern Farming Techniques: Sustainable Agriculture</h3>
+                <h3 class="text-xl font-bold mb-4 es hidden">Técnicas Agrícolas Modernas: Agricultura Sostenible</h3>
+                <h3 class="text-xl font-bold mb-4 fr hidden">Techniques Agricoles Modernes: Agriculture Durable</h3>
+                <h3 class="text-xl font-bold mb-4 hi hidden">आधुनिक कृषि तकनीक: सतत कृषि</h3>
+                <h3 class="text-xl font-bold mb-4 zh hidden">现代农业技术：可持续农业</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Farming Techniques" class="w-full h-auto rounded-lg">
+                    </div>
+                    <div>
+                        <p class="text-gray-700 mb-4 en">
+                            Modern farming techniques like vertical farming, hydroponics, and precision agriculture are transforming traditional farming methods. These approaches maximize yield while minimizing environmental impact through efficient resource use.
+                        </p>
+                        <p class="text-gray-700 mb-4 es hidden">
+                            Las técnicas agrícolas modernas como la agricultura vertical, la hidroponía y la agricultura de precisión están transformando los métodos agrícolas tradicionales. Estos enfoques maximizan el rendimiento mientras minimizan el impacto ambiental mediante el uso eficiente de recursos.
+                        </p>
+                        <p class="text-gray-700 mb-4 fr hidden">
+                            Les techniques agricoles modernes comme l'agriculture verticale, l'hydroponie et l'agriculture de précision transforment les méthodes agricoles traditionnelles. Ces approches maximisent les rendements tout en minimisant l'impact environnemental grâce à une utilisation efficace des ressources.
+                        </p>
+                        <p class="text-gray-700 mb-4 hi hidden">
+                            ऊर्ध्वाधर खेती, हाइड्रोपोनिक्स और सटीक कृषि जैसी आधुनिक कृषि तकनीकें पारंपरिक खेती के तरीकों को बदल रही हैं। ये दृष्टिकोण कुशल संसाधन उपयोग के माध्यम से पर्यावरणीय प्रभाव को कम करते हुए उपज को अधिकतम करते हैं।
+                        </p>
+                        <p class="text-gray-700 mb-4 zh hidden">
+                            垂直农业、水培和精准农业等现代农业技术正在改变传统耕作方法。这些方法通过高效的资源利用，在最大限度地减少环境影响的同时最大限度地提高产量。
+                        </p>
+                        
+                        <div class="mt-6">
+                            <button class="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-book mr-2"></i>
+                                <span class="en">Learn More</span>
+                                <span class="es hidden">Aprende Más</span>
+                                <span class="fr hidden">En savoir plus</span>
+                                <span class="hi hidden">अधिक जानें</span>
+                                <span class="zh hidden">了解更多</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 en">About AgriTech</h3>
+                    <h3 class="text-lg font-bold mb-4 es hidden">Sobre AgriTech</h3>
+                    <h3 class="text-lg font-bold mb-4 fr hidden">À propos d'AgriTech</h3>
+                    <h3 class="text-lg font-bold mb-4 hi hidden">AgriTech के बारे में</h3>
+                    <h3 class="text-lg font-bold mb-4 zh hidden">关于AgriTech</h3>
+                    
+                    <p class="text-green-200 en">
+                        We provide innovative agricultural technology solutions to farmers worldwide.
+                    </p>
+                    <p class="text-green-200 es hidden">
+                        Proporcionamos soluciones innovadoras de tecnología agrícola a agricultores de todo el mundo.
+                    </p>
+                    <p class="text-green-200 fr hidden">
+                        Nous fournissons des solutions innovantes de technologie agricole aux agriculteurs du monde entier.
+                    </p>
+                    <p class="text-green-200 hi hidden">
+                        हम दुनिया भर के किसानों को नवीन कृषि प्रौद्योगिकी समाधान प्रदान करते हैं।
+                    </p>
+                    <p class="text-green-200 zh hidden">
+                        我们为全球农民提供创新的农业技术解决方案。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 en">Quick Links</h3>
+                    <h3 class="text-lg font-bold mb-4 es hidden">Enlaces Rápidos</h3>
+                    <h3 class="text-lg font-bold mb-4 fr hidden">Liens Rapides</h3>
+                    <h3 class="text-lg font-bold mb-4 hi hidden">त्वरित लिंक</h3>
+                    <h3 class="text-lg font-bold mb-4 zh hidden">快速链接</h3>
+                    
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-green-200 hover:text-white transition en">Home</a><a href="#" class="text-green-200 hover:text-white transition es hidden">Inicio</a><a href="#" class="text-green-200 hover:text-white transition fr hidden">Accueil</a><a href="#" class="text-green-200 hover:text-white transition hi hidden">होम</a><a href="#" class="text-green-200 hover:text-white transition zh hidden">首页</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition en">Technologies</a><a href="#" class="text-green-200 hover:text-white transition es hidden">Tecnologías</a><a href="#" class="text-green-200 hover:text-white transition fr hidden">Technologies</a><a href="#" class="text-green-200 hover:text-white transition hi hidden">तकनीकें</a><a href="#" class="text-green-200 hover:text-white transition zh hidden">技术</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition en">Contact</a><a href="#" class="text-green-200 hover:text-white transition es hidden">Contacto</a><a href="#" class="text-green-200 hover:text-white transition fr hidden">Contact</a><a href="#" class="text-green-200 hover:text-white transition hi hidden">संपर्क</a><a href="#" class="text-green-200 hover:text-white transition zh hidden">联系</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4 en">Subscribe to Newsletter</h3>
+                    <h3 class="text-lg font-bold mb-4 es hidden">Suscríbete al Boletín</h3>
+                    <h3 class="text-lg font-bold mb-4 fr hidden">Abonnez-vous à la Newsletter</h3>
+                    <h3 class="text-lg font-bold mb-4 hi hidden">न्यूज़लेटर की सदस्यता लें</h3>
+                    <h3 class="text-lg font-bold mb-4 zh hidden">订阅新闻通讯</h3>
+                    
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-800 mt-8 pt-6 text-center text-green-300">
+                <p class="en">&copy; 2023 AgriTech Solutions. All rights reserved.</p>
+                <p class="es hidden">&copy; 2023 AgriTech Solutions. Todos los derechos reservados.</p>
+                <p class="fr hidden">&copy; 2023 AgriTech Solutions. Tous droits réservés.</p>
+                <p class="hi hidden">&copy; 2023 AgriTech Solutions. सर्वाधिकार सुरक्षित।</p>
+                <p class="zh hidden">&copy; 2023 AgriTech Solutions。保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language selection functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('agritechLang') || 'en';
+            changeLanguage(savedLang);
+            
+            // Set up language selector
+            const languageOptions = document.querySelectorAll('.language-option');
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    localStorage.setItem('agritechLang', lang);
+                });
+            });
+            
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button and corresponding section
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+        
+        function changeLanguage(lang) {
+            // Update current language display
+            document.getElementById('currentLanguage').textContent = 
+                lang === 'en' ? 'English' :
+                lang === 'es' ? 'Español' :
+                lang === 'fr' ? 'Français' :
+                lang === 'hi' ? 'हिन्दी' :
+                '中文';
+            
+            // Hide all language-specific elements
+            document.querySelectorAll('[class*="en"], [class*="es"], [class*="fr"], [class*="hi"], [class*="zh"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show elements for selected language
+            document.querySelectorAll(`.${lang}`).forEach(el => {
+                el.classList.remove('hidden');
+            });
+            
+            // Update main heading based on active tab
+            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
+            const headings = {
+                'smart-tractors': {
+                    'en': 'Smart Tractors',
+                    'es': 'Tractores Inteligentes',
+                    'fr': 'Tracteurs Intelligents',
+                    'hi': 'स्मार्ट ट्रैक्टर',
+                    'zh': '智能拖拉机'
+                },
+                'drones': {
+                    'en': 'Agricultural Drones',
+                    'es': 'Drones Agrícolas',
+                    'fr': 'Drones Agricoles',
+                    'hi': 'कृषि ड्रोन',
+                    'zh': '农业无人机'
+                },
+                'plants': {
+                    'en': 'Seasonal Plants',
+                    'es': 'Plantas Estacionales',
+                    'fr': 'Plantes Saisonnières',
+                    'hi': 'मौसमी पौधे',
+                    'zh': '季节性植物'
+                },
+                'techniques': {
+                    'en': 'Farming Techniques',
+                    'es': 'Técnicas Agrícolas',
+                    'fr': 'Techniques Agricoles',
+                    'hi': 'कृषि तकनीक',
+                    'zh': '农业技术'
+                }
+            };
+            
+            document.getElementById('mainHeading').textContent = headings[activeTab][lang];
+        }
+    </script>
+</body>
+</html>
